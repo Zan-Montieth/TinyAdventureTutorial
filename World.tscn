@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Art/Tiny Adventure Pack/Tiny Adventure Pack/Other/Misc/Grass.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WorldObjects/Sign.tscn" type="PackedScene" id=3]
+[ext_resource path="res://WorldObjects/Monsters/Skeleton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/UI.tscn" type="PackedScene" id=5]
+
+[node name="World" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource( 5 )]
+
+[node name="BG" type="TextureRect" parent="."]
+margin_right = 341.0
+margin_bottom = 199.0
+texture = ExtResource( 1 )
+stretch_mode = 2
+
+[node name="MainSort" type="YSort" parent="."]
+
+[node name="Friendly" type="YSort" parent="MainSort"]
+
+[node name="Player" parent="MainSort/Friendly" instance=ExtResource( 2 )]
+position = Vector2( 105, 105 )
+
+[node name="Camera2D" type="Camera2D" parent="MainSort/Friendly/Player"]
+current = true
+limit_left = 0
+limit_top = 0
+
+[node name="Objects" type="YSort" parent="MainSort"]
+
+[node name="Sign" parent="MainSort/Objects" instance=ExtResource( 3 )]
+position = Vector2( 102, 121 )
+
+[node name="Mobs" type="YSort" parent="MainSort"]
+
+[node name="Skelly" parent="MainSort/Mobs" instance=ExtResource( 4 )]
+position = Vector2( 56, 80 )
